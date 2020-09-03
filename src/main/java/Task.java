@@ -4,7 +4,8 @@ public class Task {
     protected boolean isDone;
     protected String type;
     protected static int totalTasks = 0;
-    public static final String NOTYPE = "NT";
+    public static final String NO_TYPE = "NT";
+    public static final String lineSplit = "    ____________________________________________________________";
 
 
     public Task(String description) {
@@ -19,7 +20,7 @@ public class Task {
     }
 
     public void setType() {
-        this.type = NOTYPE;
+        this.type = NO_TYPE;
     }
 
     public String getDescription() {
@@ -32,22 +33,23 @@ public class Task {
 
     public void markAsDone() {
         isDone = true;
-        System.out.println("    ____________________________________________________________");
-        System.out.println("    Nice! I've marked this task as done: ");
+        System.out.println(lineSplit);
+        System.out.println("    Nice! I've marked this task as done:");
         System.out.println("    " + getTask());
-        System.out.println("    ____________________________________________________________");
+        System.out.println(lineSplit);
     }
 
     public void doneAddTask() {
-        System.out.println("    ____________________________________________________________");
+        System.out.println(lineSplit);
         System.out.println("    Got it. I've added this task:");
         System.out.println("    " + getTask());
         System.out.println("    Now you have " + totalTasks +" tasks in the list.");
-        System.out.println("    ____________________________________________________________");
+        System.out.println(lineSplit);
     }
 
     public Task() {
-        this("");//set empty task
+        //set empty task
+        this("");
     }
 
     public static int getTotalTasks() {

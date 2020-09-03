@@ -15,7 +15,7 @@ Hello from
     Now you have 1 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-1.[T][?] borrow book
+    1.[T][?] borrow book
     ____________________________________________________________
     ____________________________________________________________
     Got it. I've added this task:
@@ -38,14 +38,14 @@ Hello from
     Now you have 5 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-1.[T][?] borrow book
-2.[T][?] read book
-3.[D][?] return book (by: June 6th)
-4.[E][?] project meeting (at: Aug 6th 2-4pm)
-5.[T][?] join sports club
+    1.[T][?] borrow book
+    2.[T][?] read book
+    3.[D][?] return book (by: June 6th)
+    4.[E][?] project meeting (at: Aug 6th 2-4pm)
+    5.[T][?] join sports club
     ____________________________________________________________
     ____________________________________________________________
-    Nice! I've marked this task as done: 
+    Nice! I've marked this task as done:
     [T][?] borrow book
     ____________________________________________________________
     ____________________________________________________________
