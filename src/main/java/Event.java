@@ -1,0 +1,42 @@
+public class Event extends Task {
+    public static final String EVENT = "E";
+    protected String at;
+
+    public Event(String description) {
+        super(description);
+        setBy(description);
+    }
+
+    public void setBy(String description) {
+        int index = description.indexOf("/at");
+        //System.out.println(description);
+        index += 4;
+        String at = description.substring(index);
+        this.at = at;
+    }
+
+    public String getAtPrint() {
+        String atPrint = "(at: " + at + ")";
+        return atPrint;
+    }
+
+    @Override
+    public void setType() {
+        this.type = EVENT;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        String frontFilter = description.replace("event ", "");
+        int endIndex = frontFilter.indexOf("/at");
+        String filter = frontFilter.substring(0, endIndex);
+        this.description = filter;
+    }
+
+    @Override
+    public String getTask() {
+        String task = super.getTask() + getAtPrint();
+        return task;
+    }
+
+}

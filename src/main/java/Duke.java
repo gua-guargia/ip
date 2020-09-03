@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -6,7 +5,7 @@ public class Duke {
         boolean canExit = false;
         String line;
         Scanner in = new Scanner(System.in);
-        List[] tasks = new List[100];
+        Task[] tasks = new Task[100];
         int taskAmount = 0;
 
         //the logo and greet
@@ -31,7 +30,19 @@ public class Duke {
                 markAsDone(line, tasks, taskAmount);
             }
             else {
-                tasks[taskAmount] = new List(line);
+                if(line.contains("todo")) {
+                    tasks[taskAmount] = new Todo(line);
+                }
+                else if(line.contains("deadline")) {
+                    tasks[taskAmount] = new Deadline(line);
+                }
+                else if(line.contains("event")) {
+                    tasks[taskAmount] = new Event(line);
+                }
+                else {
+                    tasks[taskAmount] = new Task(line);
+                }
+                tasks[taskAmount].doneAddTask();
                 taskAmount++;
             }
         }
@@ -39,56 +50,50 @@ public class Duke {
     }
 
     public static void greet() {
-        System.out.println("____________________________________________________________");
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
-        System.out.println("____________________________________________________________");
+        System.out.println("    ____________________________________________________________");
+        System.out.println("    Hello! I'm Duke");
+        System.out.println("    What can I do for you?");
+        System.out.println("    ____________________________________________________________");
     }
 
     public static void echo(String message) {
-        System.out.println("____________________________________________________________");
-        System.out.println(message);
-        System.out.println("____________________________________________________________");
+        System.out.println("    ____________________________________________________________");
+        System.out.println("    " + message);
+        System.out.println("    ____________________________________________________________");
     }
 
     public static void exit() {
-        System.out.println("____________________________________________________________");
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________________");
+        System.out.println("    ____________________________________________________________");
+        System.out.println("    Bye. Hope to see you again soon!");
+        System.out.println("    ____________________________________________________________");
     }
 
-    public static void listTasks(int taskAmount, List[] tasks) {
+    public static void listTasks(int taskAmount, Task[] tasks) {
         String isDone;
         if (taskAmount == 0) {
-            System.out.println("____________________________________________________________");
-            System.out.println("list");
-            System.out.println("____________________________________________________________");
+            System.out.println("    ____________________________________________________________");
+            System.out.println("    There is no list yet. Let's create some todo list!");
+            System.out.println("    ____________________________________________________________");
         }
         else {
-            System.out.println("____________________________________________________________");
+            System.out.println("    ____________________________________________________________");
             for(int i = 0; i< taskAmount; i++) {
                 System.out.print((i+1) +".");
-                System.out.print(tasks[i].getStatusIcon() + " ");
-                System.out.println(tasks[i].getTask());
+                tasks[i].printTask();
             }
-            System.out.println("____________________________________________________________");
+            System.out.println("    ____________________________________________________________");
         }
     }
 
-    public static void markAsDone(String line, List[] tasks, int taskAmount) {
+    public static void markAsDone(String line, Task[] tasks, int taskAmount) {
         String[] words = line.split(" ");
         int taskIndex = (Integer.parseInt(words[1])) - 1;
         if(taskIndex < 0 || taskIndex > taskAmount) {
-            System.out.println("____________________________________________________________");
-            System.out.println("Task index cannot be identified, please enter again");
-            System.out.println("____________________________________________________________");
+            System.out.println("    ____________________________________________________________");
+            System.out.println("    Task index cannot be identified, please enter again");
+            System.out.println("    ____________________________________________________________");
             return;
         }
         tasks[taskIndex].markAsDone();
-        System.out.println("____________________________________________________________");
-        System.out.println("Nice! I've marked this task as done: ");
-        System.out.print(tasks[taskIndex].getStatusIcon() + " ");
-        System.out.println(tasks[taskIndex].getTask());
-        System.out.println("____________________________________________________________");
     }
 }
