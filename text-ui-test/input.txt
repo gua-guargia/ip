@@ -6,4 +6,5 @@ event project meeting /at Aug 6th 2-4pm
 todo join sports club
 list
 done 1
+todo
 bye
