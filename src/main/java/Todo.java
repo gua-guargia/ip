@@ -1,7 +1,7 @@
-public class Todo extends Task {
+public class Todo extends Task{
     public static final String TODO = "T";
 
-    public Todo(String description) {
+    public Todo(String description) throws DukeException{
         super(description);
     }
 
@@ -11,8 +11,11 @@ public class Todo extends Task {
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(String description) throws DukeException {
         String filter = description.replace("todo ", "");
+        if (filter == "") {
+            throw new DukeException("description of a todo");
+        }
         this.description = filter;
     }
 

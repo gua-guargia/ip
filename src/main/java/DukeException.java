@@ -9,9 +9,11 @@ public class DukeException extends Exception{
 
     public void printError() {
         switch (message) {
-        case "emptyDescription":
+        case "description of a todo":
+        case "description of a event":
+        case "description of a deadline":
             System.out.println(lineSplit);
-            System.out.println("    ☹ OOPS!!! The description of a " +message +" cannot be empty.");
+            System.out.println("    ☹ OOPS!!! The" +message +" cannot be empty.");
             System.out.println(lineSplit);
             break;
         case "randomMessage":

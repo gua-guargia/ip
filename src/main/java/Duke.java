@@ -5,7 +5,7 @@ public class Duke {
     public static final int MAX_TASK = 100;
     public static final String lineSplit = "    ____________________________________________________________";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         boolean canExit = false;
         String line;
         Scanner in = new Scanner(System.in);
@@ -41,22 +41,35 @@ public class Duke {
                     e.printError();
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println(lineSplit);
-                    System.out.println("    Task index cannot be identified, please enter again");
+                    System.out.println("    it is not a task number in your list, please enter again");
                     System.out.println(lineSplit);
                 }
             }
             else {
                 if(line.toLowerCase().contains("todo")) {
-                    tasks[taskAmount] = new Todo(line);
+                    try {
+                        tasks[taskAmount] = new Todo(line);
+                    } catch (DukeException e) {
+                        e.printError();
+                    }
                 }
                 else if(line.toLowerCase().contains("deadline")) {
-                    tasks[taskAmount] = new Deadline(line);
+                    try {
+                        tasks[taskAmount] = new Deadline(line);
+                    } catch (DukeException e) {
+                        e.printError();
+                    }
                 }
                 else if(line.toLowerCase().contains("event")) {
                     tasks[taskAmount] = new Event(line);
+                    try {
+                        tasks[taskAmount] = new Event(line);
+                    } catch (DukeException e) {
+                        e.printError();
+                    }
                 }
                 else {
-                    tasks[taskAmount] = new Task(line);
+
                 }
                 tasks[taskAmount].doneAddTask();
                 taskAmount++;

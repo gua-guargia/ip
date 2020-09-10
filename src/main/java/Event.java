@@ -2,7 +2,7 @@ public class Event extends Task {
     public static final String EVENT = "E";
     protected String at;
 
-    public Event(String description) {
+    public Event(String description)  throws DukeException{
         super(description);
         setBy(description);
     }
@@ -26,7 +26,7 @@ public class Event extends Task {
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(String description) throws DukeException{
         String frontFilter = description.replace("event ", "");
         int endIndex = frontFilter.indexOf("/at");
         String filter = frontFilter.substring(0, endIndex);

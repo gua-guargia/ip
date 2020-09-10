@@ -3,7 +3,7 @@ public class Deadline extends Task {
     protected String by;
 
 
-    public Deadline(String description) {
+    public Deadline(String description) throws DukeException {
         super(description);
         setBy(description);
     }
@@ -27,7 +27,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(String description){
         String frontFilter = description.replace("deadline ", "");
         int endIndex = frontFilter.indexOf("/by");
         String filter = frontFilter.substring(0, endIndex);
