@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     /** Number of connections to this database */
     protected String description;
     protected boolean isDone;
@@ -8,16 +8,14 @@ public class Task {
     public static final String lineSplit = "    ____________________________________________________________";
 
 
-    public Task(String description) {
+    public Task(String description) throws DukeException {
         setDescription(description);
         setType();
         this.isDone = false;
         totalTasks++;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public abstract void setDescription(String description) throws DukeException;
 
     public void setType() {
         this.type = NO_TYPE;
@@ -47,10 +45,6 @@ public class Task {
         System.out.println(lineSplit);
     }
 
-    public Task() {
-        //set empty task
-        this("");
-    }
 
     public static int getTotalTasks() {
         return totalTasks;

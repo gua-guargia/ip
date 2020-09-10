@@ -5,7 +5,7 @@ public class Duke {
     public static final int MAX_TASK = 100;
     public static final String lineSplit = "    ____________________________________________________________";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         boolean canExit = false;
         String line;
         Scanner in = new Scanner(System.in);
@@ -24,30 +24,72 @@ public class Duke {
         //main chat box
         while(!canExit) {
             line = in.nextLine();
-            if(line.equals("list")) {
-                listTasks(taskAmount, tasks);
+            if(line.toLowerCase().equals("list")) {
+                try {
+                    listTasks(taskAmount, tasks);
+                } catch(DukeException e) {
+                    e.printError();
+                }
             }
-            else if(line.equals("bye")) {
+            else if(line.toLowerCase().equals("bye")) {
                 canExit = true;
             }
-            else if(line.contains("done")) {
-                markAsDone(line, tasks, taskAmount);
+            else if(line.toLowerCase().contains("done")) {
+                try {
+                    markAsDone(line, tasks, taskAmount);
+                } catch(DukeException e) {
+                    e.printError();
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(lineSplit);
+                    System.out.println("    it is not a task number in your list, please enter again");
+                    System.out.println(lineSplit);
+                }
             }
             else {
-                if(line.contains("todo")) {
-                    tasks[taskAmount] = new Todo(line);
+                if(line.toLowerCase().contains("todo")) {
+                    try {
+                        tasks[taskAmount] = new Todo(line);
+                        tasks[taskAmount].doneAddTask();
+                        taskAmount++;
+                    } catch (DukeException e) {
+                        e.printError();
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println(lineSplit);
+                        System.out.println("    ☹ OOPS!!! It is not a proper todo format, please enter again");
+                        System.out.println(lineSplit);
+                    }
                 }
-                else if(line.contains("deadline")) {
-                    tasks[taskAmount] = new Deadline(line);
+                else if(line.toLowerCase().contains("deadline")) {
+                    try {
+                        tasks[taskAmount] = new Deadline(line);
+                        tasks[taskAmount].doneAddTask();
+                        taskAmount++;
+                    } catch (DukeException e) {
+                        e.printError();
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println(lineSplit);
+                        System.out.println("    ☹ OOPS!!! It is not a proper deadline format, please enter again");
+                        System.out.println(lineSplit);
+                    }
                 }
-                else if(line.contains("event")) {
-                    tasks[taskAmount] = new Event(line);
+                else if(line.toLowerCase().contains("event")) {
+                    try {
+                        tasks[taskAmount] = new Event(line);
+                        tasks[taskAmount].doneAddTask();
+                        taskAmount++;
+                    } catch (DukeException e) {
+                        e.printError();
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println(lineSplit);
+                        System.out.println("    ☹ OOPS!!! It is not a proper event format, please enter again");
+                        System.out.println(lineSplit);
+                    }
                 }
                 else {
-                    tasks[taskAmount] = new Task(line);
+                    System.out.println(lineSplit);
+                    System.out.println("    ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    System.out.println(lineSplit);
                 }
-                tasks[taskAmount].doneAddTask();
-                taskAmount++;
             }
         }
         exit();
@@ -72,12 +114,10 @@ public class Duke {
         System.out.println(lineSplit);
     }
 
-    public static void listTasks(int taskAmount, Task[] tasks) {
+    public static void listTasks(int taskAmount, Task[] tasks) throws DukeException {
         String isDone;
         if (taskAmount == 0) {
-            System.out.println(lineSplit);
-            System.out.println("    There is no list yet. Let's create some todo list!");
-            System.out.println(lineSplit);
+            throw new DukeException("emptyList");
         }
         else {
             System.out.println(lineSplit);
@@ -89,15 +129,12 @@ public class Duke {
         }
     }
 
-    public static void markAsDone(String line, Task[] tasks, int taskAmount) {
+    public static void markAsDone(String line, Task[] tasks, int taskAmount) throws DukeException {
         String[] words = line.split(" ");
-        int taskIndex = (Integer.parseInt(words[1])) - 1;
-        if(taskIndex < 0 || taskIndex > taskAmount) {
-            System.out.println(lineSplit);
-            System.out.println("    Task index cannot be identified, please enter again");
-            System.out.println(lineSplit);
-            return;
+        if(words.length == 1) {
+            throw new DukeException("emptyDone");
         }
+        int taskIndex = (Integer.parseInt(words[1])) - 1;
         tasks[taskIndex].markAsDone();
     }
 }
