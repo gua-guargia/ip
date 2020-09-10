@@ -24,23 +24,35 @@ public class Duke {
         //main chat box
         while(!canExit) {
             line = in.nextLine();
-            if(line.equals("list")) {
-                listTasks(taskAmount, tasks);
+            if(line.toLowerCase().equals("list")) {
+                try {
+                    listTasks(taskAmount, tasks);
+                } catch(DukeException e) {
+                    e.printError();
+                }
             }
-            else if(line.equals("bye")) {
+            else if(line.toLowerCase().equals("bye")) {
                 canExit = true;
             }
-            else if(line.contains("done")) {
-                markAsDone(line, tasks, taskAmount);
+            else if(line.toLowerCase().contains("done")) {
+                try {
+                    markAsDone(line, tasks, taskAmount);
+                } catch(DukeException e) {
+                    e.printError();
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(lineSplit);
+                    System.out.println("    Task index cannot be identified, please enter again");
+                    System.out.println(lineSplit);
+                }
             }
             else {
-                if(line.contains("todo")) {
+                if(line.toLowerCase().contains("todo")) {
                     tasks[taskAmount] = new Todo(line);
                 }
-                else if(line.contains("deadline")) {
+                else if(line.toLowerCase().contains("deadline")) {
                     tasks[taskAmount] = new Deadline(line);
                 }
-                else if(line.contains("event")) {
+                else if(line.toLowerCase().contains("event")) {
                     tasks[taskAmount] = new Event(line);
                 }
                 else {
@@ -72,12 +84,10 @@ public class Duke {
         System.out.println(lineSplit);
     }
 
-    public static void listTasks(int taskAmount, Task[] tasks) {
+    public static void listTasks(int taskAmount, Task[] tasks) throws DukeException {
         String isDone;
         if (taskAmount == 0) {
-            System.out.println(lineSplit);
-            System.out.println("    There is no list yet. Let's create some todo list!");
-            System.out.println(lineSplit);
+            throw new DukeException("emptyList");
         }
         else {
             System.out.println(lineSplit);
@@ -89,14 +99,11 @@ public class Duke {
         }
     }
 
-    public static void markAsDone(String line, Task[] tasks, int taskAmount) {
+    public static void markAsDone(String line, Task[] tasks, int taskAmount) throws DukeException {
         String[] words = line.split(" ");
         int taskIndex = (Integer.parseInt(words[1])) - 1;
-        if(taskIndex < 0 || taskIndex > taskAmount) {
-            System.out.println(lineSplit);
-            System.out.println("    Task index cannot be identified, please enter again");
-            System.out.println(lineSplit);
-            return;
+        if(words.length == 1) {
+            throw new DukeException("emptyDone");
         }
         tasks[taskIndex].markAsDone();
     }
