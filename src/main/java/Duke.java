@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Duke {
-
+    //constants
     public static final int MAX_TASK = 100;
     public static final String lineSplit = "    ____________________________________________________________";
 
