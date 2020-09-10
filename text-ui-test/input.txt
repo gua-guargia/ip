@@ -7,4 +7,8 @@ todo join sports club
 list
 done 1
 todo
+todo
+event
+event /at tmr
+deadline /by tmr
 bye
