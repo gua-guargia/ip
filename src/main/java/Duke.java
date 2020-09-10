@@ -49,30 +49,47 @@ public class Duke {
                 if(line.toLowerCase().contains("todo")) {
                     try {
                         tasks[taskAmount] = new Todo(line);
+                        tasks[taskAmount].doneAddTask();
+                        taskAmount++;
                     } catch (DukeException e) {
                         e.printError();
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println(lineSplit);
+                        System.out.println("    ☹ OOPS!!! It is not a proper todo format, please enter again");
+                        System.out.println(lineSplit);
                     }
                 }
                 else if(line.toLowerCase().contains("deadline")) {
                     try {
                         tasks[taskAmount] = new Deadline(line);
+                        tasks[taskAmount].doneAddTask();
+                        taskAmount++;
                     } catch (DukeException e) {
                         e.printError();
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println(lineSplit);
+                        System.out.println("    ☹ OOPS!!! It is not a proper deadline format, please enter again");
+                        System.out.println(lineSplit);
                     }
                 }
                 else if(line.toLowerCase().contains("event")) {
-                    tasks[taskAmount] = new Event(line);
                     try {
                         tasks[taskAmount] = new Event(line);
+                        tasks[taskAmount].doneAddTask();
+                        taskAmount++;
                     } catch (DukeException e) {
                         e.printError();
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println(lineSplit);
+                        System.out.println("    ☹ OOPS!!! It is not a proper event format, please enter again");
+                        System.out.println(lineSplit);
                     }
                 }
                 else {
-
+                    System.out.println(lineSplit);
+                    System.out.println("    ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    System.out.println(lineSplit);
                 }
-                tasks[taskAmount].doneAddTask();
-                taskAmount++;
             }
         }
         exit();
@@ -114,10 +131,10 @@ public class Duke {
 
     public static void markAsDone(String line, Task[] tasks, int taskAmount) throws DukeException {
         String[] words = line.split(" ");
-        int taskIndex = (Integer.parseInt(words[1])) - 1;
         if(words.length == 1) {
             throw new DukeException("emptyDone");
         }
+        int taskIndex = (Integer.parseInt(words[1])) - 1;
         tasks[taskIndex].markAsDone();
     }
 }

@@ -13,14 +13,14 @@ public class DukeException extends Exception{
         case "description of a event":
         case "description of a deadline":
             System.out.println(lineSplit);
-            System.out.println("    ☹ OOPS!!! The" +message +" cannot be empty.");
+            System.out.println("    ☹ OOPS!!! The " +message +" cannot be empty.");
             System.out.println(lineSplit);
             break;
-        case "randomMessage":
-            System.out.println(lineSplit);
-            System.out.println("    ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-            System.out.println(lineSplit);
-            break;
+        //case "randomMessage":
+        //    System.out.println(lineSplit);
+        //    System.out.println("    ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        //    System.out.println(lineSplit);
+        //    break;
         case "emptyList":
             System.out.println(lineSplit);
             System.out.println("    ☹ OOPS!!! The list is still empty.");
@@ -28,7 +28,17 @@ public class DukeException extends Exception{
             break;
         case "emptyDone":
             System.out.println(lineSplit);
-            System.out.println("☹ OOPS!!! I don't know which task you have done.");
+            System.out.println("    ☹ OOPS!!! I don't know which task you have done.");
+            System.out.println(lineSplit);
+            break;
+        case "emptyBy":
+            System.out.println(lineSplit);
+            System.out.println("    ☹ OOPS!!! The by cannot be empty.");
+            System.out.println(lineSplit);
+            break;
+        case "emptyAt":
+            System.out.println(lineSplit);
+            System.out.println("    ☹ OOPS!!! The at cannot be empty.");
             System.out.println(lineSplit);
             break;
         }

@@ -13,7 +13,8 @@ public class Todo extends Task{
     @Override
     public void setDescription(String description) throws DukeException {
         String filter = description.replace("todo ", "");
-        if (filter == "") {
+        String errorChecker = description.replace("todo", "");
+        if (filter.isEmpty() || errorChecker.isEmpty()) {
             throw new DukeException("description of a todo");
         }
         this.description = filter;

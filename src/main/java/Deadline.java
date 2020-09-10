@@ -8,11 +8,14 @@ public class Deadline extends Task {
         setBy(description);
     }
 
-    public void setBy(String description) {
+    public void setBy(String description) throws DukeException{
         int index = description.indexOf("/by");
         //System.out.println(description);
         index += 4;
         String by = description.substring(index);
+        if(by.isEmpty()) {
+            throw new DukeException("emptyBy");
+        }
         this.by = by;
     }
 
@@ -27,10 +30,13 @@ public class Deadline extends Task {
     }
 
     @Override
-    public void setDescription(String description){
+    public void setDescription(String description) throws DukeException{
         String frontFilter = description.replace("deadline ", "");
         int endIndex = frontFilter.indexOf("/by");
         String filter = frontFilter.substring(0, endIndex);
+        if (filter.isEmpty()) {
+            throw new DukeException("description of a deadline");
+        }
         this.description = filter;
     }
 
