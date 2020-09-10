@@ -1,3 +1,7 @@
+package duke.task;
+import duke.main.Duke;
+import duke.exception.DukeException;
+
 public abstract class Task {
     /** Number of connections to this database */
     protected String description;

@@ -1,3 +1,9 @@
+package duke.task;
+
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.main.Duke;
+
 public class Event extends Task {
     public static final String EVENT = "E";
     protected String at;
