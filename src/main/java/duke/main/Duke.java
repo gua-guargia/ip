@@ -86,11 +86,16 @@ public class Duke {
                     tasks.get(taskIndex).removeTask();
                     tasks.remove(taskIndex);
                     taskAmount--;
+                    writeFile(filePath, tasks, taskAmount);
                 } catch(DukeException e) {
                     e.printError();
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println(lineSplit);
                     System.out.println("    it is not a task number in your list, please enter again");
+                    System.out.println(lineSplit);
+                } catch (IOException e) {
+                    System.out.println(lineSplit);
+                    System.out.println("    Sorry, I cannot save the file");
                     System.out.println(lineSplit);
                 }
             }
