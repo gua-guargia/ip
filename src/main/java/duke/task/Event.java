@@ -3,12 +3,16 @@ package duke.task;
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.main.Duke;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.io.IOException;
 
 public class Event extends Task {
     public static final String EVENT = "E";
     protected String at;
 
-    public Event(String description)  throws DukeException{
+    public Event(String description)  throws DukeException, IOException {
         super(description);
         setBy(description);
     }
@@ -37,7 +41,7 @@ public class Event extends Task {
     @Override
     public void setDescription(String description) throws DukeException{
         String frontFilter = description.replace("event ", "");
-        int endIndex = frontFilter.indexOf("/at");
+        int endIndex = frontFilter.indexOf(" /at");
         String filter = frontFilter.substring(0, endIndex);
         if(filter.isEmpty()) {
             throw new DukeException("description of a event");
@@ -49,6 +53,16 @@ public class Event extends Task {
     public String getTask() {
         String task = super.getTask() + getAtPrint();
         return task;
+    }
+
+    @Override
+    public void writeFile() throws IOException {
+        String textToAdd;
+        String isDone = (this.isDone)? "1" : "0";
+        textToAdd = "E" + " | " + isDone + " | " + this.description + " | " + this.at;
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(System.lineSeparator() + textToAdd);
+        fw.close();
     }
 
 }
