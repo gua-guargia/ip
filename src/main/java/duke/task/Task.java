@@ -71,4 +71,8 @@ public abstract class Task {
         String task = getTypeIcon() + getStatusIcon() + " " + getDescription();
         return task;
     }
+
+    public void removeTask() {
+        totalTasks--;
+    }
 }

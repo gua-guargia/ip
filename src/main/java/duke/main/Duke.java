@@ -5,17 +5,19 @@ import duke.task.Task;
 import duke.task.Todo;
 import duke.task.Deadline;
 import duke.task.Event;
+import java.util.ArrayList;
 
 public class Duke {
     //constants
-    public static final int MAX_TASK = 100;
+    //public static final int MAX_TASK = 100;
     public static final String lineSplit = "    ____________________________________________________________";
 
     public static void main(String[] args) throws DukeException {
         boolean canExit = false;
         String line;
         Scanner in = new Scanner(System.in);
-        Task[] tasks = new Task[MAX_TASK];
+        //Task[] tasks = new Task[MAX_TASK];
+        ArrayList<Task> tasks = new ArrayList<>();
         int taskAmount = 0;
 
         //the logo and greet
@@ -51,11 +53,27 @@ public class Duke {
                     System.out.println(lineSplit);
                 }
             }
+            else if(line.toLowerCase().contains("delete")) {
+                try {
+                    int taskIndex = deleteTask(line, tasks, taskAmount);
+                    tasks.get(taskIndex).removeTask();
+                    tasks.remove(taskIndex);
+                    taskAmount--;
+                } catch(DukeException e) {
+                    e.printError();
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(lineSplit);
+                    System.out.println("    it is not a task number in your list, please enter again");
+                    System.out.println(lineSplit);
+                }
+            }
             else {
                 if(line.toLowerCase().contains("todo")) {
                     try {
-                        tasks[taskAmount] = new Todo(line);
-                        tasks[taskAmount].doneAddTask();
+                        tasks.add(new Todo(line));
+                        tasks.get(taskAmount).doneAddTask();
+                        //tasks[taskAmount] = new Todo(line);
+                        //tasks[taskAmount].doneAddTask();
                         taskAmount++;
                     } catch (DukeException e) {
                         e.printError();
@@ -67,8 +85,10 @@ public class Duke {
                 }
                 else if(line.toLowerCase().contains("deadline")) {
                     try {
-                        tasks[taskAmount] = new Deadline(line);
-                        tasks[taskAmount].doneAddTask();
+                        tasks.add(new Deadline(line));
+                        tasks.get(taskAmount).doneAddTask();
+                        //tasks[taskAmount] = new Deadline(line);
+                        //tasks[taskAmount].doneAddTask();
                         taskAmount++;
                     } catch (DukeException e) {
                         e.printError();
@@ -80,8 +100,10 @@ public class Duke {
                 }
                 else if(line.toLowerCase().contains("event")) {
                     try {
-                        tasks[taskAmount] = new Event(line);
-                        tasks[taskAmount].doneAddTask();
+                        tasks.add(new Event(line));
+                        tasks.get(taskAmount).doneAddTask();
+                        //tasks[taskAmount] = new Event(line);
+                        //tasks[taskAmount].doneAddTask();
                         taskAmount++;
                     } catch (DukeException e) {
                         e.printError();
@@ -120,7 +142,7 @@ public class Duke {
         System.out.println(lineSplit);
     }
 
-    public static void listTasks(int taskAmount, Task[] tasks) throws DukeException {
+    public static void listTasks(int taskAmount, ArrayList<Task> tasks) throws DukeException {
         String isDone;
         if (taskAmount == 0) {
             throw new DukeException("emptyList");
@@ -129,18 +151,35 @@ public class Duke {
             System.out.println(lineSplit);
             for(int i = 0; i< taskAmount; i++) {
                 System.out.print("    " + (i+1) +".");
-                tasks[i].printTask();
+                tasks.get(i).printTask();
+                //tasks[i].printTask();
             }
             System.out.println(lineSplit);
         }
     }
 
-    public static void markAsDone(String line, Task[] tasks, int taskAmount) throws DukeException {
+    public static void markAsDone(String line, ArrayList<Task> tasks, int taskAmount) throws DukeException {
         String[] words = line.split(" ");
         if(words.length == 1) {
             throw new DukeException("emptyDone");
         }
         int taskIndex = (Integer.parseInt(words[1])) - 1;
-        tasks[taskIndex].markAsDone();
+        tasks.get(taskIndex).markAsDone();
+        //tasks[taskIndex].markAsDone();
+    }
+
+    public static int deleteTask(String line, ArrayList<Task> tasks, int taskAmount) throws DukeException {
+        String[] words = line.split(" ");
+        if(words.length == 1) {
+            throw new DukeException("emptyDone");
+        }
+        int taskIndex = (Integer.parseInt(words[1])) - 1;
+        System.out.println(lineSplit);
+        System.out.println("    Noted. I've removed this task: ");
+        System.out.println("    " + tasks.get(taskIndex).getTask());
+        System.out.println("    Now you have " + (taskAmount - 1) + " tasks in the list.");
+        System.out.println(lineSplit);
+        //tasks[taskIndex].markAsDone();
+        return taskIndex;
     }
 }
