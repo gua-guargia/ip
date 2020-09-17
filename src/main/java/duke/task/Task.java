@@ -2,6 +2,9 @@ package duke.task;
 import duke.main.Duke;
 import duke.exception.DukeException;
 
+import java.io.IOException;
+
+
 public abstract class Task {
     /** Number of connections to this database */
     protected String description;
@@ -9,13 +12,15 @@ public abstract class Task {
     protected String type;
     protected static int totalTasks = 0;
     public static final String NO_TYPE = "NT";
+    String filePath = "data/duke.txt";
     public static final String lineSplit = "    ____________________________________________________________";
 
 
-    public Task(String description) throws DukeException {
+    public Task(String description) throws DukeException, IOException {
         setDescription(description);
         setType();
         this.isDone = false;
+        //writeFile();
         totalTasks++;
     }
 
@@ -71,4 +76,6 @@ public abstract class Task {
         String task = getTypeIcon() + getStatusIcon() + " " + getDescription();
         return task;
     }
+
+    public abstract void writeFile() throws IOException;
 }
