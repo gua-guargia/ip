@@ -41,7 +41,15 @@ public class Duke {
         try {
             taskAmount = printFileContents(filePath, tasks);
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("    You're still a new user! I have created a new duke.txt for you!");
+            File f = new File(filePath);
+            boolean success = f.getParentFile().mkdir();
+            if(success) {
+                System.out.println("    Successfully created new directory");
+            }
+            else {
+                System.out.println("    Failed to create new directory");
+            }
         }
 
         //main chat box
@@ -114,7 +122,7 @@ public class Duke {
                         System.out.println(lineSplit);
                     } catch (IOException e) {
                         System.out.println(lineSplit);
-                        System.out.println("    ☹ OOPS!!! Something wrong with the file, please check the /data/duke.txt");
+                        System.out.println("    ☹ OOPS!!! Something wrong with the file, please check the data/duke.txt");
                         System.out.println(lineSplit);
                     }
                 }
@@ -228,7 +236,6 @@ public class Duke {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
         int taskAmount = 0;
-        System.out.println("    You have the following items in your list:");
         while (s.hasNext()) {
             //System.out.println("    " + s.nextLine());
             String line = s.nextLine();
@@ -260,7 +267,7 @@ public class Duke {
 
             }
             else {
-                System.out.println("File reading error");
+                System.out.println("    You have the following items in your list:");
             }
         }
         return taskAmount;
