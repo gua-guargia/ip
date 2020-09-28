@@ -3,5 +3,6 @@ T | 1 | read book
 D | 0 | return book | June 6th
 E | 0 | project meeting | Aug 6th 2-4pm
 T | 1 | join sports club
-T | 0 | finish landry
-E | 1 | attend tutorial | 26 July
+T | 1 | finish landry
+T | 0 | finish ip
+E | 1 | date | friday

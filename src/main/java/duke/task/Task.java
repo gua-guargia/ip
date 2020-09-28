@@ -40,18 +40,12 @@ public abstract class Task {
 
     public void markAsDone() {
         isDone = true;
-        System.out.println(lineSplit);
-        System.out.println("    Nice! I've marked this task as done:");
-        System.out.println("    " + getTask());
-        System.out.println(lineSplit);
     }
 
     public void doneAddTask() {
-        System.out.println(lineSplit);
         System.out.println("    Got it. I've added this task:");
         System.out.println("    " + getTask());
         System.out.println("    Now you have " + totalTasks +" tasks in the list.");
-        System.out.println(lineSplit);
     }
 
 
