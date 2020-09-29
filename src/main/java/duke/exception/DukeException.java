@@ -14,7 +14,7 @@ public class DukeException extends Exception{
         case "description of a event":
         case "description of a deadline":
             System.out.println(lineSplit);
-            System.out.println("    ☹ OOPS!!! The " +message +" cannot be empty.");
+            System.out.println("    ☹ OOPS!!! The " + message + " cannot be empty.");
             System.out.println(lineSplit);
             break;
         //case "randomMessage":
@@ -42,6 +42,17 @@ public class DukeException extends Exception{
             System.out.println("    ☹ OOPS!!! The at cannot be empty.");
             System.out.println(lineSplit);
             break;
+        case "emptyFind":
+            System.out.println(lineSplit);
+            System.out.println("    ☹ OOPS!!! The filter word cannot be empty.");
+            System.out.println(lineSplit);
+            break;
+        case "emptyFilter":
+            System.out.println(lineSplit);
+            System.out.println("    ☹ OOPS!!! I cannot find the words from current list.");
+            System.out.println(lineSplit);
+            break;
         }
+
     }
 }

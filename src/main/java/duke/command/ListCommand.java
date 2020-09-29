@@ -28,8 +28,6 @@ public class ListCommand extends Command{
     }
 
     public void listTasks(int taskAmount, ArrayList<Task> tasks) throws DukeException {
-        String isDone;
-        Ui ui = new Ui();
         if (taskAmount == 0) {
             throw new DukeException("emptyList");
         }
@@ -37,7 +35,6 @@ public class ListCommand extends Command{
             for(int i = 0; i< taskAmount; i++) {
                 System.out.print("    " + (i+1) +".");
                 tasks.get(i).printTask();
-                //tasks[i].printTask();
             }
         }
     }

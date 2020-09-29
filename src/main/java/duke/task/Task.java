@@ -20,15 +20,12 @@ public abstract class Task {
         setDescription(description);
         setType();
         this.isDone = false;
-        //writeFile();
         totalTasks++;
     }
 
     public abstract void setDescription(String description) throws DukeException;
 
-    public void setType() {
-        this.type = NO_TYPE;
-    }
+    public abstract void setType();
 
     public String getDescription() {
         return description;

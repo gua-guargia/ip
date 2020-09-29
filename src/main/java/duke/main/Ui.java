@@ -56,7 +56,16 @@ public class Ui {
     }
 
     public void markAsDone(TaskList taskList, int index) {
+        String task = taskList.getTasks().get(index).getTask();
         System.out.println("    Nice! I've marked this task as done:");
-        System.out.println("    " + taskList.getTasks().indexOf(index));
+        System.out.println("    " + task);
+    }
+
+    public void doneAddTask(TaskList taskList) {
+        int taskAmount = taskList.getTaskAmount();
+        String task = taskList.getTasks().get(taskAmount - 1).getTask();
+        System.out.println("    Got it. I've added this task:");
+        System.out.println("    " + task);
+        System.out.println("    Now you have " + taskAmount +" tasks in the list.");
     }
 }
