@@ -23,6 +23,9 @@ public class Parser {
         else if(fullCommand.toLowerCase().contains("delete")) {
             return new DeleteCommand(fullCommand);
         }
+        else if(fullCommand.toLowerCase().contains("find")) {
+            return new FindCommand(fullCommand);
+        }
         else {
             if(fullCommand.toLowerCase().contains("todo")) {
                 return new AddTodoCommand(fullCommand);

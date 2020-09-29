@@ -59,4 +59,35 @@ public class TaskList {
         tasks.get(taskAmount).writeFile();
         taskAmount++;
     }
+
+    public void findTasks(String command) throws DukeException {
+        String[] words = command.split(" ");
+        ArrayList<Task> taskFilter = new ArrayList<>();
+        if(words.length == 1) {
+            throw new DukeException("emptyFind");
+        }
+
+        for(Task task : tasks) {
+            for(int j = 1; j < words.length; j++) {
+                if(task.getDescription().contains(words[j])) {
+                    taskFilter.add(task);
+                    break;
+                }
+            }
+        }
+        printTaskFilter(taskFilter);
+    }
+
+    public void printTaskFilter(ArrayList<Task> taskFilter) throws DukeException {
+        int size = taskFilter.size();
+        if (size == 0) {
+            throw new DukeException("emptyFilter");
+        }
+        else {
+            for(int i = 0; i< size; i++) {
+                System.out.print("    " + (i+1) +".");
+                taskFilter.get(i).printTask();
+            }
+        }
+    }
 }
