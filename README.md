@@ -31,7 +31,7 @@ This is a my Java project Duke for CS2113T. It's named after the Java mascot _Du
    Example:
    > delete 2
    >   ____________________________________________________________
-   >   Noted. I've removed this task: 
+   >   Noted. I've removed this task:
    >   [T][✓] read book
    >   Now you have 4 tasks in the list.
    >   ____________________________________________________________
@@ -77,13 +77,13 @@ This is a my Java project Duke for CS2113T. It's named after the Java mascot _Du
    Example:
    > list
    >   ____________________________________________________________
-   >   1.[T][✓] read book
-   >   2.[E][✘] project meeting(at: Aug 6th 2-4pm)
-   >   3.[T][✓] join sports club
-   >   4.[T][✓] finish landry
-   >   5.[T][✘] finish ip
-   >   6.[E][✓] date(at: friday)
-   >   7.[T][✘] work
+   >   1. [T][✓] read book
+   >   2. [E][✘] project meeting(at: Aug 6th 2-4pm)
+   >   3. [T][✓] join sports club
+   >   4. [T][✓] finish landry
+   >   5. [T][✘] finish ip
+   >   6. [E][✓] date(at: friday)
+   >   7. [T][✘] work
    >   ____________________________________________________________
    > done 2
    >   ____________________________________________________________
@@ -99,13 +99,15 @@ This is a my Java project Duke for CS2113T. It's named after the Java mascot _Du
    > find finish sports
    >   ____________________________________________________________
    >   Here are the matching tasks in your list:
-   >   1.[T][✓] join sports club
-   >   2.[T][✓] finish landry
-   >   3.[T][✘] finish ip
+   >   1. [T][✓] join sports club
+   >   2. [T][✓] finish landry
+   >   3. [T][✘] finish ip
    >   ____________________________________________________________
    
    #### Exit the program: `<bye>`
    This command exist the user from program and update the user list in the file.
+   
+   Example:
    > bye
    >   ____________________________________________________________
    >   Your file has been saved in data/duke.txt
