@@ -1,13 +1,20 @@
 # Duke: IP Project
 
-This is a my Java project Duke for CS2113T. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+This is a Java project Duke for CS2113T. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
 ## User Guide
 
 ### 1.0 What is Duke? 
+This is a Java project Duke for CS2113T. It's named after the Java mascot _Duke_. Duke is an task manager which allows the user to add, delete, modify and check the tasks.
 
 ### 2.0 About this document
+This document shows you six basic features in Duke, the `<list>`, `<todo>`, `<event>`, `<deadline>`, `<delete>`, `<find>`, `<bye>` and `<done>` commands.
 
+Note the following symbols and formatting used in this document:
+format and symbols | meanings
+--------- | ------------
+`<list>` | A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application
+Welcome to Duke | A box of content splited by two lines indicates that this is a output that computed by Duke after interpreting the command line.
 
 ### 3.0 Basic commands
 
@@ -31,9 +38,9 @@ This is a my Java project Duke for CS2113T. It's named after the Java mascot _Du
    Example:
    > delete 2
    >   ____________________________________________________________
-   >   Noted. I've removed this task:
-   >   [T][✓] read book
-   >   Now you have 4 tasks in the list.
+   >     Noted. I've removed this task:
+   >     [T][✓] read book
+   >     Now you have 4 tasks in the list.
    >   ____________________________________________________________
   
   
@@ -45,9 +52,9 @@ This is a my Java project Duke for CS2113T. It's named after the Java mascot _Du
    Example:
    > todo read book
    >   ____________________________________________________________
-   >   Got it. I've added this task:
-   >   [T][✘] read book
-   >   Now you have 5 tasks in the list.
+   >     Got it. I've added this task:
+   >     [T][✘] read book
+   >     Now you have 5 tasks in the list.
    >   ____________________________________________________________
    
    **event** task requires a task description and a date of the event.
@@ -55,9 +62,9 @@ This is a my Java project Duke for CS2113T. It's named after the Java mascot _Du
    Example:
    > event visit parents /at Sunday afternoon
    >   ____________________________________________________________
-   >   Got it. I've added this task:
-   >   [E][✘] visit parents(at: Sunday afternoon)
-   >   Now you have 6 tasks in the list.
+   >     Got it. I've added this task:
+   >     [E][✘] visit parents(at: Sunday afternoon)
+   >     Now you have 6 tasks in the list.
    >   ____________________________________________________________
    
    **deadline** task requires a task description and a deadline date or time.
@@ -65,9 +72,9 @@ This is a my Java project Duke for CS2113T. It's named after the Java mascot _Du
    Example:
    > deadline ip publish /by Friday 11:59 p.m.
    >   ____________________________________________________________
-   >   Got it. I've added this task:
-   >   [D][✘] ip publish(by: Friday 11:59 p.m.)
-   >   Now you have 7 tasks in the list.
+   >     Got it. I've added this task:
+   >     [D][✘] ip publish(by: Friday 11:59 p.m.)
+   >     Now you have 7 tasks in the list.
    >   ____________________________________________________________
    
    
@@ -87,8 +94,8 @@ This is a my Java project Duke for CS2113T. It's named after the Java mascot _Du
    >   ____________________________________________________________
    > done 2
    >   ____________________________________________________________
-   >   Nice! I've marked this task as done:
-   >   [E][✓] project meeting(at: Aug 6th 2-4pm)
+   >     Nice! I've marked this task as done:
+   >     [E][✓] project meeting(at: Aug 6th 2-4pm)
    >   ____________________________________________________________
    
    
@@ -110,10 +117,10 @@ This is a my Java project Duke for CS2113T. It's named after the Java mascot _Du
    Example:
    > bye
    >   ____________________________________________________________
-   >   Your file has been saved in data/duke.txt
+   >     Your file has been saved in data/duke.txt
    >   ____________________________________________________________
    >   ____________________________________________________________
-   >   Bye. Hope to see you again soon!
+   >     Bye. Hope to see you again soon!
    >   ____________________________________________________________
 
 
