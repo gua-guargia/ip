@@ -8,6 +8,9 @@ import duke.task.Deadline;
 
 import java.io.IOException;
 
+/**
+ * Represents a add deadline command handler.
+ */
 public class AddDeadlineCommand extends Command{
     public AddDeadlineCommand(String command) {
         super(command);

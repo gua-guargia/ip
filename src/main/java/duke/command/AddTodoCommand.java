@@ -8,6 +8,9 @@ import duke.task.Todo;
 
 import java.io.IOException;
 
+/**
+ * Represents a add todo command handler.
+ */
 public class AddTodoCommand extends Command{
     public AddTodoCommand(String command) {
         super(command);

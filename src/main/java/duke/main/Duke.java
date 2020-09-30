@@ -1,21 +1,17 @@
 package duke.main;
 
-import java.util.Scanner;
-import java.io.File;
+
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-
 import duke.exception.DukeException;
-import duke.task.Task;
-import duke.task.Todo;
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.command.Command;
-import java.util.ArrayList;
 
 
-
+/**
+ * Represents a task manager called the Duke. A <code>Duke</code> object corresponds to
+ * a functional task manger which users can add, delete, modify and store tasks. The tasks information is stored in
+ * a file under a file path e.g., <code>"data/duke.txt"</code>
+ */
 public class Duke {
     //constants
     //public static final int MAX_TASK = 100;
@@ -23,6 +19,7 @@ public class Duke {
     private Storage storage;
     private Ui ui;
     private TaskList taskList;
+
 
     public Duke(String filePath) {
         ui = new Ui();
@@ -37,8 +34,10 @@ public class Duke {
             ui.showFileNoteFoundError();
             storage.create();
             taskList = new TaskList();
-        } catch (DukeException | IOException e) {
-            ui.showLoadingError();
+        } catch (DukeException e) {
+            e.printError();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
