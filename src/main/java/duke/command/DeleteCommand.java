@@ -7,6 +7,9 @@ import duke.main.Ui;
 
 import java.io.IOException;
 
+/**
+ * Represents a delete command handler.
+ */
 public class DeleteCommand extends Command {
     public DeleteCommand(String command) {
         super(command);

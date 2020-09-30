@@ -8,6 +8,9 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list command handler.
+ */
 public class ListCommand extends Command{
     public ListCommand(String command) {
         super(command);
@@ -16,7 +19,7 @@ public class ListCommand extends Command{
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            listTasks(taskList.getTaskAmount(), taskList.getTasks());
+            taskList.listTasks();
         } catch(DukeException e) {
             e.printError();
         }
@@ -25,17 +28,5 @@ public class ListCommand extends Command{
     @Override
     public boolean isExit() {
         return false;
-    }
-
-    public void listTasks(int taskAmount, ArrayList<Task> tasks) throws DukeException {
-        if (taskAmount == 0) {
-            throw new DukeException("emptyList");
-        }
-        else {
-            for(int i = 0; i< taskAmount; i++) {
-                System.out.print("    " + (i+1) +".");
-                tasks.get(i).printTask();
-            }
-        }
     }
 }

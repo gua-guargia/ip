@@ -8,6 +8,9 @@ import duke.task.Event;
 
 import java.io.IOException;
 
+/**
+ * Represents a add event command handler.
+ */
 public class AddEventCommand extends Command{
     public AddEventCommand(String command) {
         super(command);

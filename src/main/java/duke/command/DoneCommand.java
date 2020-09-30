@@ -7,6 +7,9 @@ import duke.main.Ui;
 
 import java.io.IOException;
 
+/**
+ * Represents a done command handler.
+ */
 public class DoneCommand extends Command{
     public DoneCommand(String command) {
         super(command);

@@ -3,9 +3,15 @@ package duke.main;
 import duke.exception.DukeException;
 import duke.task.Task;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Represents a task list manager. A <code>TaskList</code> object corresponds to a task list manger
+ * which allows users to add, delete, modify and check the tasks stored in Task array list
+ * e.g., <code>ArrayList<Task></code>
+ */
 public class TaskList {
     protected ArrayList<Task> tasks;
     protected int taskAmount = 0;
@@ -28,8 +34,16 @@ public class TaskList {
         return taskAmount;
     }
 
-    public int markAsDone( String line) throws DukeException {
-        String[] words = line.split(" ");
+    /**
+     * Marks task as done by index entered by user.
+     * Returns task index that has been marked as done.
+     *
+     * @param command Command entered by user.
+     * @return Index of the task that has been marked as done.
+     * @throws DukeException  If command doesn't contains the index to be mark as done.
+     */
+    public int markAsDone(String command) throws DukeException {
+        String[] words = command.split(" ");
         if(words.length == 1) {
             throw new DukeException("emptyDone");
         }
@@ -38,6 +52,14 @@ public class TaskList {
         return taskIndex;
     }
 
+    /**
+     * Deletes task by index entered by user.
+     * Returns task index that has been deleted.
+     *
+     * @param command Command entered by user.
+     * @return Index of the task that has been deleted.
+     * @throws DukeException  If command doesn't contains the index to be deleted.
+     */
     public int deleteTask(String command) throws DukeException {
         String[] words = command.split(" ");
         if(words.length == 1) {
@@ -53,6 +75,13 @@ public class TaskList {
         return taskIndex;
     }
 
+    /**
+     * Adds new task into the tasks list.
+     * Returns task index that has been marked as done.
+     *
+     * @param task New task to be added into the tasks array list.
+     * @throws IOException  If there is a failure during reading, writing and searching file or directory operations.
+     */
     public void add(Task task) throws IOException {
         tasks.add(task);
         tasks.get(taskAmount).doneAddTask();
@@ -60,6 +89,12 @@ public class TaskList {
         taskAmount++;
     }
 
+    /**
+     * Deletes task by index entered by user.
+     *
+     * @param command Command entered by user.
+     * @throws DukeException  If command doesn't contains any words for filter.
+     */
     public void findTasks(String command) throws DukeException {
         String[] words = command.split(" ");
         ArrayList<Task> taskFilter = new ArrayList<>();
@@ -78,12 +113,37 @@ public class TaskList {
         printTaskFilter(taskFilter);
     }
 
+    /**
+     * Prints the task list.
+     *
+     * @throws DukeException  If the task list doesn't contains any task.
+     */
+    public void listTasks() throws DukeException {
+        if (taskAmount == 0) {
+            throw new DukeException("emptyList");
+        }
+        else {
+            for(int i = 0; i< taskAmount; i++) {
+                System.out.print("    " + (i+1) +".");
+                tasks.get(i).printTask();
+            }
+        }
+    }
+
+    /**
+     * Print filtered task array list based on the filter words.
+     *
+     * @param taskFilter Task array list to store the tasks that contains the filter words in their task description.
+     * @throws DukeException  If the taskFilter is empty which means no task description matches the filter words.
+     */
     public void printTaskFilter(ArrayList<Task> taskFilter) throws DukeException {
         int size = taskFilter.size();
         if (size == 0) {
             throw new DukeException("emptyFilter");
         }
         else {
+            Ui ui = new Ui();
+            ui.findTask();
             for(int i = 0; i< size; i++) {
                 System.out.print("    " + (i+1) +".");
                 taskFilter.get(i).printTask();

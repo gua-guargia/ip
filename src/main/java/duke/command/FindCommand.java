@@ -5,6 +5,9 @@ import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 
+/**
+ * Represents a find command handler.
+ */
 public class FindCommand extends Command {
 
 

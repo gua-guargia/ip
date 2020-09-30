@@ -6,3 +6,4 @@ T | 1 | join sports club
 T | 1 | finish landry
 T | 0 | finish ip
 E | 1 | date | friday
+T | 0 | work

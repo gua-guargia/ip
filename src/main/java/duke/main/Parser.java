@@ -8,8 +8,19 @@ import duke.task.Todo;
 
 import java.io.IOException;
 
+/**
+ * Represents a parser to interpret the command inputted by the user. A <code>Parser</code> object corresponds to
+ * a parser that reads in command and interpret the meaning of the command.
+ */
 public class Parser {
 
+    /**
+     * Select the corresponding Command class through interpreting the command entered by user.
+     * Returns the correct Command class.
+     *
+     * @param fullCommand Command entered by user.
+     * @return Construct new Command that is corresponding to the command entered by user.
+     */
     public static Command parse(String fullCommand) {
         if(fullCommand.toLowerCase().equals("list")) {
             return new ListCommand(fullCommand);

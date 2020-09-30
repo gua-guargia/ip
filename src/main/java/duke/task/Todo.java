@@ -1,12 +1,13 @@
 package duke.task;
-import duke.main.Duke;
+
 import duke.exception.DukeException;
-import duke.task.Task;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import java.io.IOException;
-
+/**
+ * Represents a task of todo type in task list. A <code>Todo</code> object corresponds to a todo
+ * with todo description, complete status e.g., <code>"todo read a book"</code>
+ */
 public class Todo extends Task{
     public static final String TODO = "T";
 
@@ -14,11 +15,20 @@ public class Todo extends Task{
         super(description);
     }
 
+    /**
+     * Sets type of task to Todo.
+     */
     @Override
     public void setType() {
         this.type = TODO;
     }
 
+    /**
+     * Sets the todo description for new 'todo' task.
+     *
+     * @param description Command entered by user.
+     * @throws DukeException  If command doesn't contain description of the new event.
+     */
     @Override
     public void setDescription(String description) throws DukeException {
         String filter = description.replace("todo ", "");
@@ -29,6 +39,11 @@ public class Todo extends Task{
         this.description = filter;
     }
 
+    /**
+     * Writes and stores new task into the file.
+     *
+     * @throws IOException  If there is a failure during reading, writing and searching file or directory operations.
+     */
     @Override
     public void writeFile() throws IOException {
         String textToAdd;

@@ -6,6 +6,9 @@ import duke.main.Ui;
 
 import java.io.IOException;
 
+/**
+ * Represents a exit command handler.
+ */
 public class ExitCommand extends Command{
     public ExitCommand(String command) {
         super(command);
