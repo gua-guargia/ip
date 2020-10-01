@@ -19,9 +19,7 @@ public class ExitCommand extends Command{
         try {
             storage.writeFile(taskList.getTasks(), taskList.getTaskAmount());
         } catch (IOException e) {
-            ui.showLine();
             System.out.println("    Sorry, I cannot save the file");
-            ui.showLine();
         } finally {
             System.out.println("    Your file has been saved in " + storage.getFilePath());
         }

@@ -26,6 +26,9 @@ public class DukeException extends Exception{
         case "emptyDone":
             System.out.println("    ☹ OOPS!!! I don't know which task you have done.");
             break;
+        case "emptyDelete" :
+            System.out.println("    ☹ OOPS!!! I don't know which task you want to delete.");
+            break;
         case "emptyBy":
             System.out.println("    ☹ OOPS!!! The by cannot be empty.");
             break;

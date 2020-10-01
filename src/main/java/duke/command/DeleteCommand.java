@@ -23,13 +23,9 @@ public class DeleteCommand extends Command {
         } catch(DukeException e) {
             e.printError();
         } catch (IndexOutOfBoundsException e) {
-            ui.showLine();
-            System.out.println("    it is not a task number in your list, please enter again");
-            ui.showLine();
+            System.out.println("    ☹ OOPS!!! It is not a task number in your list, please enter again");
         } catch (IOException e) {
-            ui.showLine();
-            System.out.println("    Sorry, I cannot save the file");
-            ui.showLine();
+            System.out.println("    ☹ OOPS!!! Sorry, I cannot save the file");
         }
     }
 

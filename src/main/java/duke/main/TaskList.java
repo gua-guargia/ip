@@ -63,11 +63,13 @@ public class TaskList {
     public int deleteTask(String command) throws DukeException {
         String[] words = command.split(" ");
         if(words.length == 1) {
-            throw new DukeException("emptyDone");
+            throw new DukeException("emptyDelete");
         }
         int taskIndex = (Integer.parseInt(words[1])) - 1;
+        String task = tasks.get(taskIndex).getTask();
+
         System.out.println("    Noted. I've removed this task: ");
-        System.out.println("    " + tasks.get(taskIndex).getTask());
+        System.out.println("    " + task);
         System.out.println("    Now you have " + (taskAmount - 1) + " tasks in the list.");
         tasks.get(taskIndex).removeTask();
         tasks.remove(taskIndex);

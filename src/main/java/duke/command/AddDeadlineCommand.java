@@ -23,13 +23,9 @@ public class AddDeadlineCommand extends Command{
         } catch (DukeException e) {
             e.printError();
         } catch (StringIndexOutOfBoundsException e) {
-            ui.showLine();
             System.out.println("    ☹ OOPS!!! It is not a proper deadline format, please enter again");
-            ui.showLine();
         } catch (IOException e) {
-            ui.showLine();
             System.out.println("    ☹ OOPS!!! Something wrong with the file, please check the /data/duke.txt");
-            ui.showLine();
         }
     }
 
